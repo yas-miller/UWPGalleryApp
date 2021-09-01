@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="PhotoLibraryApp.MediaViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhotoLibraryApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <CommandBar DefaultLabelPosition="Right">
+                <CommandBar.Content>
+                    <AppBarButton x:Name="Back" Label="Back" Icon="Back" LabelPosition="Collapsed" Click="Back_Button_Click"/>
+                </CommandBar.Content>
+                <AppBarButton x:Name="AddItemBtn" Label="Add to..." Icon="Add" Click="Add_Photos_Button_ClickAsync"/>
+                <AppBarButton x:Name="DeleteItemBtn" Label="Delete Photos" Icon="Delete" Click="Delete_Photos_Button_ClickAsync"/>
+                <AppBarButton x:Name="CancelSelectionBtn" Label="Cancel" Icon="Cancel" Click="CancelSelectionBtn_Click_1"/>
+         </CommandBar>
+
+
+
+        <StackPanel Orientation="Vertical" Margin="100, 50, 100, 30" >
+            <FlipView x:Name="flipView" ItemsSource="{x:Bind Items}" Background="White">
+                <FlipView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Media">
+                        <MediaElement MediaFailed="MediaElement_MediaFailed" PartialMediaFailureDetected="MediaElement_PartialMediaFailureDetected" Source="{x:Bind ImageSource}"/>
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>           
+        </StackPanel>
+    </Grid>
+</Page>
